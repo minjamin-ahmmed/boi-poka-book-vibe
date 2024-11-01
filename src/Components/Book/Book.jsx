@@ -12,7 +12,7 @@ const Book = ({book}) => {
     <img
       src={image}
       alt={bookName}
-      className="lg:h-[166px] h-[200px]" 
+      className="lg:h-[166px] h-[200px] transform transition hover:scale-105 hover:shadow-3xl duration-300" 
       />
   </figure>
   <div className="card-body">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
+import { addStoredReadList, addStoredWishList } from '../../Utilities/AddToDb';
 
 const BookDetails = () => {
 
@@ -10,15 +11,27 @@ const BookDetails = () => {
 
     const book = booksData.find(book => book.bookId === id)
 
-    console.log(book);
+    
 
     const {bookName, author, image, rating, tags, category, review, publisher, yearOfPublishing, totalPages } = book
+
+
+  const handleMarkAsRead = (id) => {
+
+    addStoredReadList(id)
+  }
+
+  const handleAddToWishlist = (id) => {
+    addStoredWishList(id)
+  }
+
+
     
     return (
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-20 mb-10'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-20 my-10'>
             <div className='bg-gray-200 p-8 lg:p-14 rounded-2xl'>
 
-                <img className='lg:h-[700px] w-full rounded-2xl object-cover' src={image} alt="" />
+                <img className='lg:h-[700px] w-full rounded-2xl' src={image} alt="" />
             </div>
 
             <div>
@@ -33,13 +46,13 @@ const BookDetails = () => {
 
                 <p className='mb-4'> <span className='font-bold'>Review:</span> {review} </p>
 
-             <p className='flex items-center gap-5 text-md font-bold'> Tag: <div className="flex items-center gap-5">
+             <div className='flex items-center gap-5 text-md font-bold'> Tag: <div className="flex items-center gap-5">
                
                {
                    tags.map((tag, index) => <button key={index} className="btn btn-xs bg-[#22be0a53]  px-4 "> {tag} </button>)
                }
 
-               </div> </p>
+               </div> </div>
 
                 <div className="divider"></div>
                 
@@ -83,8 +96,8 @@ const BookDetails = () => {
             </div>
 
                <div className='mt-8'>
-                 <button className="btn btn-outline mr-5">Read</button>
-                 <button className="btn btn-info text-white font-bold">WishList</button>
+                 <button onClick={() => handleMarkAsRead(bookId)} className="btn btn-outline mr-5">Mark As Read</button>
+                 <button onClick={() => handleAddToWishlist(bookId)} className="btn btn-info text-white font-bold">Add To WishList</button>
 
                </div>
 

@@ -6,7 +6,7 @@ const Navbar = () => {
     const links = <>
 
             <li > <NavLink to="/" >Home</NavLink> </li>
-            <li><a>Item 3</a></li>
+            <li> <NavLink to="/listedBooks" >Listed Books</NavLink> </li>
     </>
 
     return (
@@ -38,7 +38,7 @@ const Navbar = () => {
     <a className="btn btn-ghost text-xl">Book Vibe</a>
   </div>
   <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
+    <ul className="menu menu-horizontal gap-5 px-1">
       
         {links}
 
